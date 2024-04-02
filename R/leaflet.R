@@ -41,8 +41,8 @@ leafletSizingPolicy <- function(
 #' formulae will be evaluated in the \code{data}.
 #' @param data a data object. Currently supported objects are matrix, data
 #' frame, spatial data from the \pkg{sf} package,
-#' \code{SpatVector} from the \pkg{terra} package, and the Spatial*
-#' objects from the \pkg{sp} package that represent points, lines, or polygons.
+#' \code{SpatVector} from the \pkg{terra} package, and spatial data.frames
+#' from the \pkg{sf} package that represent points, lines, or polygons.
 #'
 #' @param width the width of the map
 #' @param height the height of the map

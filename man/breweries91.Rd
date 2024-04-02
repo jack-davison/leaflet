@@ -5,7 +5,7 @@
 \alias{breweries91}
 \title{Selected breweries in Franconia}
 \format{
-\code{sp::SpatialPointsDataFrame}
+\code{sf data.frame} from \pkg{sf}
 }
 \description{
 Selected breweries in Franconia (zip code starting with 91...)

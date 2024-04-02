@@ -5,7 +5,7 @@
 \alias{atlStorms2005}
 \title{Atlantic Ocean storms 2005}
 \format{
-\code{sp::SpatialLinesDataFrame}
+\code{sf data.frame} from \pkg{sf}
 }
 \description{
 Atlantic Ocean storms 2005
