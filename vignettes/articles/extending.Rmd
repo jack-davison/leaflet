@@ -19,7 +19,7 @@ Certain functions have been made available for you to use in your code while ext
 
 ## derivePoints/derivePolygons
 
-`derivePoints()` and `derivePolygons()` can be used to extract point or shape (polygon/line/circle/rectangle) data from a `data.frame` or a spatial object from the `sp` package. It tries to auto determine the latitude/longitude colnames if not specified or use user supplied column mappings.
+`derivePoints()` and `derivePolygons()` can be used to extract point or shape (polygon/line/circle/rectangle) data from a `data.frame` or a spatial object from the `{sf}` package. It tries to auto determine the latitude/longitude colnames if not specified or use user supplied column mappings.
 
 ## evalFormula
 
@@ -35,7 +35,7 @@ Often when passing a list from R to Javascript it is desirable to remove any nul
 
 ## getMapData
 
-`getMapData()` accesses the data object passed when calling `leaflet()` funtion.
+`getMapData()` accesses the data object passed when calling `leaflet()` function.
 
 ## invokeMethod
 

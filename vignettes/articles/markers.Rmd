@@ -19,8 +19,7 @@ Use markers to call out points on the map. Marker locations are expressed in lat
 
 Point data for markers can come from a variety of sources:
 
-- `SpatialPoints` or `SpatialPointsDataFrame` objects (from the `sp` package)
-- `POINT`, `sfc_POINT`, and `sf` objects (from the `sf` package); only `X` and `Y` dimensions will be considered
+- `POINT`, `sfc_POINT`, and `sf` objects (from the `{sf}` package); only `X` and `Y` dimensions will be considered
 - Two-column numeric matrices (first column is longitude, second is latitude)
 - Data frame with latitude and longitude columns. You can explicitly tell the marker function which columns contain the coordinate data (e.g. `addMarkers(lng = ~Longitude, lat = ~Latitude)`), or let the function look for columns named `lat`/`latitude` and `lon`/`lng`/`long`/`longitude` (case insensitive).
 - Simply provide numeric vectors as `lng` and `lat` arguments
@@ -66,8 +65,8 @@ quakes1 <- quakes[1:10,]
 
 leafIcons <- icons(
   iconUrl = ifelse(quakes1$mag < 4.6,
-    "https://leafletjs.com/examples/custom-icons/leaf-green.png",
-    "https://leafletjs.com/examples/custom-icons/leaf-red.png"
+                   "https://leafletjs.com/examples/custom-icons/leaf-green.png",
+                   "https://leafletjs.com/examples/custom-icons/leaf-red.png"
   ),
   iconWidth = 38, iconHeight = 95,
   iconAnchorX = 22, iconAnchorY = 94,
@@ -90,16 +89,19 @@ oceanIcons <- iconList(
 )
 
 # Some fake data
-df <- sp::SpatialPointsDataFrame(
-  cbind(
-    (runif(20) - .5) * 10 - 90.620130,  # lng
-    (runif(20) - .5) * 3.8 + 25.638077  # lat
-  ),
-  data.frame(type = factor(
-    ifelse(runif(20) > 0.75, "pirate", "ship"),
-    c("ship", "pirate")
-  ))
-)
+df <-
+  sf::st_as_sf(
+    data.frame(
+      lng = (runif(20) - .5) * 10 - 90.620130,
+      lat = (runif(20) - .5) * 3.8 + 25.638077
+    ),
+    coords = c("lng", "lat"),
+    crs = 4326
+  )
+
+df$type <-
+  factor(ifelse(runif(20) > 0.75, "pirate", "ship"),
+         c("ship", "pirate"))
 
 leaflet(df) %>% addTiles() %>%
   # Select from oceanIcons based on df$type
@@ -109,7 +111,6 @@ leaflet(df) %>% addTiles() %>%
 ## Awesome Icons
 
 Leaflet supports even more customizable markers using the [awesome markers](https://github.com/lennardv2/Leaflet.awesome-markers) leaflet plugin.
-
 
 The `addAwesomeMarkers()` function is similar to `addMarkers()` function but additionally allows you to specify custom colors for the markers as well as icons from the [Font Awesome](https://fontawesome.com/icons), [Bootstrap Glyphicons](https://getbootstrap.com/components/), and [Ion icons](https://ionic.io/ionicons) icon libraries.
 
@@ -121,13 +122,13 @@ df.20 <- quakes[1:20,]
 
 getColor <- function(quakes) {
   sapply(quakes$mag, function(mag) {
-  if(mag <= 4) {
-    "green"
-  } else if(mag <= 5) {
-    "orange"
-  } else {
-    "red"
-  } })
+    if(mag <= 4) {
+      "green"
+    } else if(mag <= 5) {
+      "orange"
+    } else {
+      "red"
+    } })
 }
 
 icons <- awesomeIcons(

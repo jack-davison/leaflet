@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r,echo=FALSE}
+```{r,echo=FALSE, warning=FALSE}
 library(leaflet)
 library(magrittr)
 ```

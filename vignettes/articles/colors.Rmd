@@ -44,10 +44,9 @@ The `domain` argument tells the color function the range of input values. You ca
 
 ## Coloring continuous data
 
-
 ```{r message=FALSE,warning=FALSE,results='hide'}
 # From http://data.okfn.org/data/datasets/geo-boundaries-world-110m
-countries <- sf::st_read("https://rstudio.github.io/leaflet/json/countries.geojson")
+countries <- sf::read_sf("https://rstudio.github.io/leaflet/json/countries.geojson")
 map <- leaflet(countries)
 ```
 

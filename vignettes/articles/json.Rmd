@@ -2,12 +2,11 @@
 title: "Working with GeoJSON & TopoJSON"
 ---
 
+For working with GeoJSON/TopoJSON data you have two options: either read it into `{sf}` objects; or use the `addGeoJSON()` and `addTopoJSON()` functions.
 
-For working with GeoJSON/TopoJSON data you have two options: either read it into `sp` objects; or use the `addGeoJSON()` and `addTopoJSON()` functions.
+# Reading as `{sf}`
 
-# Reading as `sp`
-
-The first approach is to use either `sf` or `geojsonio` (packages) to read GeoJSON/TopoJSON as `sp` objects. Then, you can use the full functionality of [polygons](https://rstudio.github.io/leaflet/articles/shapes.html), [markers](https://rstudio.github.io/leaflet/articles/markers.html), [colors](https://rstudio.github.io/leaflet/articles/colors.html), [legends](https://rstudio.github.io/leaflet/articles/legends.html), etc.
+The first approach is to use either `{sf}` or `{geojsonio}` (packages) to read GeoJSON/TopoJSON as `{sf}` objects. Then, you can use the full functionality of [polygons](https://rstudio.github.io/leaflet/articles/shapes.html), [markers](https://rstudio.github.io/leaflet/articles/markers.html), [colors](https://rstudio.github.io/leaflet/articles/colors.html), [legends](https://rstudio.github.io/leaflet/articles/legends.html), etc.
 
 ```{r, include = FALSE}
 library(leaflet)
