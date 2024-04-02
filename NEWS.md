@@ -8,6 +8,12 @@
 
 * `addRasterImage` now takes `options = gridOptions()`, so that arbitrary Leaflet layer options can be controlled. (#692)
 
+* Various changes related to the evolution in R spatial packages (https://r-spatial.org/r/2023/04/10/evolution3.html).
+
+    * `atlStorms2005`, `breweries91` and `gadmCHE` are now exported as `sf` `data.frame` objects rather than `sp` Spatial*DataFrames.
+    
+    * Package documentation now preferentially uses `{sf}` and `{terra}` over `{sp}` and `{raster}`, respectively.
+
 # leaflet 2.2.1
 
 * When `addProviderTiles()` is used with `{leaflet.providers}` version 2.0.0 or later, the `leaflet-providers` HTML dependency produced can be correctly cached by knitr. When used with older versions of `{leaflet.providers}`, the HTML dependency uses temp files that break knitr's caching mechanism (thanks @qdread, @jaredlander; #884).
