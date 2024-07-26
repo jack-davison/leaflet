@@ -47,16 +47,14 @@ test_that("normalize", {
     leaflet(x) %>% addTiles() %>% addPolygons()
   }
 
-  poldata <- st_as_sf(gadmCHE)
-
-  (r1 <- pgontest(poldata))
-  (r2 <- pgontest(st_geometry(poldata)))
-  (r3 <- pgontest(st_geometry(poldata)[[1]]))
-  (r4 <- pgontest(st_geometry(poldata)[[1]][[1]] %>% st_polygon()))
-  (r5 <- pgontest(gadmCHE))
-  (r6 <- pgontest(polygons(gadmCHE)))
-  (r7 <- pgontest(polygons(gadmCHE)@polygons[[1]]))
-  (r8 <- pgontest(polygons(gadmCHE)@polygons[[1]]@Polygons[[1]]))
+  (r1 <- pgontest(gadmCHE))
+  (r2 <- pgontest(st_geometry(gadmCHE)))
+  (r3 <- pgontest(st_geometry(gadmCHE)[[1]]))
+  (r4 <- pgontest(st_geometry(gadmCHE)[[1]][[1]] %>% st_polygon()))
+  (r5 <- pgontest(gadmCHE_sp))
+  (r6 <- pgontest(polygons(gadmCHE_sp)))
+  (r7 <- pgontest(polygons(gadmCHE_sp)@polygons[[1]]))
+  (r8 <- pgontest(polygons(gadmCHE_sp)@polygons[[1]]@Polygons[[1]]))
 
   expect_maps_equal(r1, r2)
   expect_maps_equal(r3, r4)
@@ -64,20 +62,18 @@ test_that("normalize", {
 
   ### lines -----------------------------------------------------------------
 
-  lindata <- st_as_sf(atlStorms2005)
-
   plinetest <- function(x) {
     leaflet(x) %>% addTiles() %>% addPolylines()
   }
 
-  (l1 <- plinetest(lindata))  # sf, data.frame
-  (l2 <- plinetest(st_geometry(lindata)))  # sfc_LINESTRING, sfc
-  (l3 <- plinetest(st_geometry(lindata)[[1]]))  # XY, LINESTRING, sfg
-  (l4 <- plinetest(st_multilinestring(st_geometry(lindata))))  # XY, MULTILINESTRING, sfg
-  (l5 <- plinetest(atlStorms2005))
-  (l6 <- plinetest(SpatialLines(atlStorms2005@lines)))
-  (l7 <- plinetest(atlStorms2005@lines[[1]]))
-  (l8 <- plinetest(atlStorms2005@lines[[1]]@Lines[[1]]))
+  (l1 <- plinetest(atlStorms2005))  # sf, data.frame
+  (l2 <- plinetest(st_geometry(atlStorms2005)))  # sfc_LINESTRING, sfc
+  (l3 <- plinetest(st_geometry(atlStorms2005)[[1]]))  # XY, LINESTRING, sfg
+  (l4 <- plinetest(st_multilinestring(st_geometry(atlStorms2005))))  # XY, MULTILINESTRING, sfg
+  (l5 <- plinetest(atlStorms2005_sp))
+  (l6 <- plinetest(SpatialLines(atlStorms2005_sp@lines)))
+  (l7 <- plinetest(atlStorms2005_sp@lines[[1]]))
+  (l8 <- plinetest(atlStorms2005_sp@lines[[1]]@Lines[[1]]))
 
   expect_maps_equal(l1, l2)
   expect_maps_equal(l1, l5)
@@ -86,21 +82,20 @@ test_that("normalize", {
   expect_maps_equal(l3, l8)
 
   ### points ----------------------------------------------------------------
-  ptsdata <- st_as_sf(breweries91)
-  class(ptsdata)  # sf, data.frame
-  class(st_geometry(ptsdata))  # sfc_POINT, sfc
-  class(st_geometry(ptsdata)[[1]])  # XY, POINT, sfg
-  class(do.call(rbind, unclass(st_geometry(ptsdata))) %>% st_multipoint())  # XY, POINT, sfg
+  class(breweries91)  # sf, data.frame
+  class(st_geometry(breweries91))  # sfc_POINT, sfc
+  class(st_geometry(breweries91)[[1]])  # XY, POINT, sfg
+  class(do.call(rbind, unclass(st_geometry(breweries91))) %>% st_multipoint())  # XY, POINT, sfg
 
-  (p1 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = ptsdata))
-  (p2 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = st_geometry(ptsdata)))
-  (p3 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = st_geometry(ptsdata)[[1]]))
-  # leaflet() %>% addTiles() %>% addCircleMarkers(data = do.call(rbind, unclass(st_geometry(ptsdata))) %>% st_multipoint())
+  (p1 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = breweries91))
+  (p2 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = st_geometry(breweries91)))
+  (p3 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = st_geometry(breweries91)[[1]]))
+  # leaflet() %>% addTiles() %>% addCircleMarkers(data = do.call(rbind, unclass(st_geometry(breweries91))) %>% st_multipoint())
 
   expect_maps_equal(p1, p2)
 
-  (p4 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = ptsdata[FALSE, ]))
-  (p5 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = st_geometry(ptsdata)[FALSE]))
+  (p4 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = breweries91[FALSE, ]))
+  (p5 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = st_geometry(breweries91)[FALSE]))
   (p6 <- leaflet() %>% addTiles() %>% addCircleMarkers(lng = numeric(0), lat = numeric(0)))
   expect_maps_equal(p4, p5)
   expect_maps_equal(p4, p6)

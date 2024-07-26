@@ -20,17 +20,17 @@ test_that("normalize terra", {
     leaflet(x) %>% addTiles() %>% addPolygons()
   }
 
-  poldata <- vect(gadmCHE)
+  poldata <- vect(gadmCHE_sp)
   crs(poldata) <- "+proj=longlat +datum=WGS84"
 
   (r1 <- pgontest(poldata))
-  (r2 <- pgontest(gadmCHE))
+  (r2 <- pgontest(gadmCHE_sp))
 
   expect_maps_equal(r1, r2)
 
   ### lines -----------------------------------------------------------------
 
-  lindata <- vect(atlStorms2005)
+  lindata <- vect(atlStorms2005_sp)
   crs(lindata) <- "+proj=longlat +datum=WGS84"
 
   plinetest <- function(x) {
@@ -38,16 +38,16 @@ test_that("normalize terra", {
   }
 
   (l1 <- plinetest(lindata))  # terra, SpatVector
-  (l2 <- plinetest(atlStorms2005))
+  (l2 <- plinetest(atlStorms2005_sp))
 
   expect_maps_equal(l1, l2)
 
   ### points ----------------------------------------------------------------
-  ptsdata <- vect(breweries91)
+  ptsdata <- vect(breweries91_sp)
   crs(ptsdata) <- "+proj=longlat +datum=WGS84"
 
   (p1 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = ptsdata))
-  (p2 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = breweries91))
+  (p2 <- leaflet() %>% addTiles() %>% addCircleMarkers(data = breweries91_sp))
   expect_maps_equal(p1, p2)
 
   ### lines -----------------------------------------------------------------
