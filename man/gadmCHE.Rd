@@ -5,7 +5,7 @@
 \alias{gadmCHE}
 \title{Administrative borders of Switzerland (level 1)}
 \format{
-\code{sp::SpatialPolygonsDataFrame}
+A \link[sf:sf-package]{Simple Features data.frame} with 26 features and 13 fields.
 }
 \source{
 \url{https://gadm.org}

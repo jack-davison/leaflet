@@ -5,7 +5,7 @@
 \alias{atlStorms2005}
 \title{Atlantic Ocean storms 2005}
 \format{
-\code{sp::SpatialLinesDataFrame}
+A \link[sf:sf-package]{Simple Features data.frame} with 24 features and 3 fields.
 }
 \description{
 Atlantic Ocean storms 2005

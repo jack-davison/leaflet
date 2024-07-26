@@ -32,7 +32,7 @@ if (file.exists("inst/csv/uspop2000.csv")) {
 #' @description Atlantic Ocean storms 2005
 #' @details This dataset contains storm tracks for selected storms
 #' in the Atlantic Ocean basin for the year 2005
-#' @format `sp::SpatialLinesDataFrame`
+#' @format A [Simple Features data.frame][sf::sf-package] with 24 features and 3 fields.
 #' @family built in datasets
 NULL
 
@@ -42,7 +42,7 @@ NULL
 #' @description Administrative borders of Switzerland (level 1)
 #' @details This dataset comes from <https://gadm.org>.
 #' It was downloaded using [getData()].
-#' @format `sp::SpatialPolygonsDataFrame`
+#' @format A [Simple Features data.frame][sf::sf-package] with 26 features and 13 fields.
 #' @family built in datasets
 #' @source
 #' <https://gadm.org>
@@ -57,6 +57,6 @@ NULL
 #' subset of a larger database that was compiled by students at the
 #' University of Marburg for a seminar called
 #' "The Geography of Beer, sustainability in the food industry"
-#' @format `sp::SpatialPointsDataFrame`
+#' @format A [Simple Features data.frame][sf::sf-package] with 32 features and 7 fields.
 #' @family built in datasets
 NULL
