@@ -2,6 +2,8 @@
 
 * Color palette improvements. All color palette functions now support all `{viridisLite}` palettes ("magma", "inferno", "plasma", "viridis", "cividis", "rocket", "mako", and "turbo").
 
+* Built-in data (`atlStorms2005`, `gadmCHE`, and `breweries91`) are now `{sf}` data.frames, to better reflect the evolution of the R-Spatial ecosystem: <https://r-spatial.org/r/2023/04/10/evolution3.html>
+
 # leaflet 2.2.2
 
 * Fixed #893: Correctly call `terra::crs()` when checking the CRS of a `SpatVector` object in `pointData()` or `polygonData()` (thanks @mkoohafkan, #894).
